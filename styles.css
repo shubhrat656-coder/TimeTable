@@ -1,0 +1,332 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f0f2f5;
+    min-height: 100vh;
+    padding-top: 60px;
+    padding-left: 200px;
+}
+h1{
+    font-family:cursive;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #92cde1;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+.navbar-logo img {
+    height: 40px;
+    animation: glow 2s ease-in-out infinite;
+}
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
+    50% { box-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5); }
+    100% { box-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.3); }
+}
+.navbar-title {
+    font-family:'Times New Roman', Times, serif;
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+}
+.navbar-login {
+    position: relative;
+}
+#login-button {
+    width: auto;
+    padding: 8px 12px;
+    background-color: white;
+    color: #007bff;
+    border: 1px solid #0056b3;
+}
+#login-button:hover {
+    background-color: #e6f0fa;
+}
+.login-dropdown {
+    display: none;
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    border-radius: 4px;
+    padding: 15px;
+    width: 200px;
+}
+.login-dropdown form {
+    margin-bottom: 10px;
+}
+.login-dropdown ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.login-dropdown li {
+    padding: 8px;
+    cursor: pointer;
+    color: #333;
+}
+.login-dropdown li:hover {
+    background-color: #f0f2f5;
+}
+.sidebar {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 180px;
+    height: 100%;
+    background-color: #fff;
+    box-shadow: 2px 0 4px rgba(0,0,0,0.1);
+    padding: 20px 10px;
+    z-index: 999;
+}
+.sidebar-menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.sidebar-menu li {
+    padding: 10px;
+    cursor: pointer;
+    color: #333;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+.sidebar-menu li:hover {
+    background-color: #f0f2f5;
+}
+.sidebar-menu li.active {
+    background-color: #007bff;
+    color: white;
+}
+.content {
+    padding: 20px;
+}
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    width: 600px;
+    margin: 20px auto;
+    text-align: center;
+}
+h1, h2, h3 {
+    color: #333;
+}
+h1 {
+    font-size: 24px;
+}
+p {
+    color: #555;
+}
+.form-group {
+    margin-bottom: 15px;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+input, select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #0056b3;
+}
+#schedule-section, #view-schedule, #about-section, #events-section, #calendar-section, #timetable-section, #manage-users-section {
+    display: none;
+}
+.schedule-item {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+#user-list {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 10px;
+}
+.user-item {
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.user-item button {
+    width: auto;
+    padding: 5px 10px;
+    background-color: #dc3545;
+}
+.user-item button:hover {
+    background-color: #c82333;
+}
+#edit-user-form {
+    border-top: 1px solid #ddd;
+    padding-top: 10px;
+}
+#cancel-edit {
+    background-color: #6c757d;
+    margin-top: 10px;
+}
+#cancel-edit:hover {
+    background-color: #5a6268;
+}
+.user-item button.edit {
+    background-color: #ffc107;
+    margin-right: 5px;
+}
+.user-item button.edit:hover {
+    background-color: #e0a800;
+}
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+    display: none;
+}
+#timetable-display table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+#timetable-display th, #timetable-display td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+#timetable-display th {
+    background-color: #007bff;
+    color: white;
+}
+#timetable-display tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+#timetable-download {
+    background-color: #28a745;
+}
+#timetable-download:hover {
+    background-color: #218838;
+}
+/* Replace calendar-related styles */
+#calendar-section {
+    width: 350px; /* Smaller container */
+    padding: 15px;
+}
+#calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+    font-family: 'Roboto', Arial, sans-serif;
+}
+#calendar-header button {
+    background-color: transparent;
+    color: rgb(0, 0, 0);
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 12px;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+#calendar-header button:hover {
+    background-color: #357abd;
+}
+#calendar-header span {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+}
+#calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 3px;
+    background-color: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+#calendar-grid div {
+    padding: 6px;
+    text-align: center;
+    font-size: 12px;
+    min-height: 30px;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+#calendar-grid .header {
+    background-color: #4a90e2;
+    color: white;
+    font-weight: 500;
+    font-size: 12px;
+}
+#calendar-grid .empty {
+    background-color: #f7f9fb;
+}
+#calendar-grid .holiday {
+    background-color: #ffe6e6;
+    color: #d32f2f;
+}
+#calendar-grid .event {
+    background-color: #e6f3fa;
+    color: #0288d1;
+}
+#calendar-grid .today {
+    border: 2px solid #4a90e2;
+    box-sizing: border-box;
+}
+#calendar-grid div:not(.header):hover {
+    background-color: #e0e0e0;
+}
+#calendar-error {
+    color: #d32f2f;
+    text-align: center;
+    margin-top: 8px;
+    font-size: 12px;
+    display: none;
+}
+#add-event-form {
+    border-top: 1px solid #e0e0e0;
+    padding-top: 10px;
+}
+#add-event-form h3 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #333;
+}
+#add-event-form .form-group {
+    margin-bottom: 10px;
+}
+#add-event-form label {
+    font-size: 12px;
+    color: #555;
+}
+#add-event-form input,
+#add-event-form select {
+    padding: 6px;
+    font-size: 12px;
+    border-radius: 4px;
+}

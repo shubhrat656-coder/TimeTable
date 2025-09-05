@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Montessori School</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-logo">
+            <img src="cms logo.png" alt="School Logo">
+        </div>
+        <div class="navbar-title">The Slate</div>
+        <div class="navbar-login">
+            <button id="login-button">Login</button>
+            <div id="login-dropdown" class="login-dropdown">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select id="role" required>
+                            <option value="student">Student</option>
+                            <option value="teacher">Teacher</option>
+                            <option value="admin">Admin</option>
+                        </select>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div id="error-message" class="error"></div>
+                <ul id="user-options" style="display: none;">
+                    <li id="option-schedule" style="display: none;">Schedule Class</li>
+                    <li id="option-view-schedule" style="display: none;">View Schedule</li>
+                    <li id="option-manage-users" style="display: none;">Manage Users</li>
+                    <li id="option-logout" style="display: none;">Logout</li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <ul class="sidebar-menu">
+            <li id="sidebar-home">Home</li>
+            <li id="sidebar-about">About</li>
+            <li id="sidebar-events">Events</li>
+            <li id="sidebar-calendar">Calendar</li>
+            <li id="sidebar-timetable">Time Table</li>
+        </ul>
+    </div>
+
+    <!-- Content Area -->
+    <div class="content">
+        <!-- Home Section -->
+        <div class="container" id="home-section">
+            <h1>Welcome to The Slate</h1>
+            <h3>One Campus. One Calendar. One Slate.</h3>
+<p>​ Bring every department, course, and event together with a centralized scheduling solution that works for everyone.</p>
+        </div>
+
+        <!-- About Section -->
+        <div class="container" id="about-section" style="display: none;">
+            <h2>About Us</h2>
+            <p>City Montessori School is dedicated to providing quality education and fostering a supportive learning environment for all students.</p>
+        </div>
+
+        <!-- Events Section -->
+        <div class="container" id="events-section" style="display: none;">
+            <h2>Events</h2>
+            <p>Stay updated with our upcoming school events, including sports days, cultural festivals, and academic competitions.</p>
+        </div>
+
+        <!-- Calendar Section -->
+       <div class="container" id="calendar-section" style="display: none;">
+    <h2>School Calendar</h2>
+    <div id="calendar-header">
+        <button id="prev-month">&lt;</button>
+        <span id="current-month-year"></span>
+        <button id="next-month">&gt;</button>
+    </div>
+    <div id="calendar-grid"></div>
+    <div id="calendar-error" class="error"></div>
+    <div id="add-event-form" style="display: none; margin-top: 15px;">
+        <h3>Add Holiday/Event</h3>
+        <form id="event-form">
+            <div class="form-group">
+                <label for="event-title">Title</label>
+                <input type="text" id="event-title" required>
+            </div>
+            <div class="form-group">
+                <label for="event-date">Date</label>
+                <input type="date" id="event-date" required>
+            </div>
+            <div class="form-group">
+                <label for="event-type">Type</label>
+                <select id="event-type" required>
+                    <option value="holiday">Holiday</option>
+                    <option value="event">Event</option>
+                </select>
+            </div>
+            <button type="submit">Add</button>
+        </form>
+    </div>
+</div>
+
+        <!-- Time Table Section -->
+<div class="container" id="timetable-section" style="display: none;">
+    <h2>Time Table</h2>
+    <div class="form-group">
+        <label for="timetable-class">Select Class</label>
+        <select id="timetable-class" required>
+            <option value="">Select Class</option>
+            <option value="9">Class 9</option>
+            <option value="10">Class 10</option>
+            <option value="11">Class 11</option>
+            <option value="12">Class 12</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="timetable-section">Select Section</label>
+        <select id="timetable-section" required disabled>
+            <option value="">Select Section</option>
+        </select>
+    </div>
+    <button id="timetable-submit">Show Time Table</button>
+    <div id="timetable-display" style="margin-top: 20px;"></div>
+    <button id="timetable-download" style="display: none; margin-top: 10px;">Download as PDF</button>
+    <div id="timetable-error" class="error"></div>
+</div>
+        <!-- Schedule Class Section (Teacher) -->
+        <div class="container" id="schedule-section" style="display: none;">
+            <h2>Teacher Schedule Management</h2>
+            <form id="schedule-form">
+                <div class="form-group">
+                    <label for="class-title">Class Title</label>
+                    <input type="text" id="class-title" required>
+                </div>
+                <div class="form-group">
+                    <label for="class-date">Date</label>
+                    <input type="date" id="class-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="class-time">Time</label>
+                    <input type="time" id="class-time" required>
+                </div>
+                <button type="submit">Add Class</button>
+            </form>
+        </div>
+
+        <!-- View Schedule Section (Student) -->
+        <div class="container" id="view-schedule" style="display: none;">
+            <h2>Class Schedule</h2>
+            <div id="schedule-list"></div>
+        </div>
+
+        <!-- Manage Users Section (Admin) -->
+        <div class="container" id="manage-users-section" style="display: none;">
+            <h2>Manage Users</h2>
+            <form id="add-user-form">
+                <div class="form-group">
+                    <label for="new-username">New Username</label>
+                    <input type="text" id="new-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-password">New Password</label>
+                    <input type="password" id="new-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="new-role">Role</label>
+                    <select id="new-role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <button type="submit">Add User</button>
+            </form>
+            <h3>Existing Users</h3>
+            <div id="user-list"></div>
+            <form id="edit-user-form" style="display: none; margin-top: 20px;">
+                <h3>Edit User</h3>
+                <input type="hidden" id="edit-username-original">
+                <div class="form-group">
+                    <label for="edit-username">Username</label>
+                    <input type="text" id="edit-username" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-password">Password</label>
+                    <input type="password" id="edit-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="edit-role">Role</label>
+                    <select id="edit-role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
+                <button type="submit">Update User</button>
+                <button type="button" id="cancel-edit">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
